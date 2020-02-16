@@ -1,0 +1,9 @@
+2020-02-16 10:49:42.132 [main] DEBUG com.cck.o2o.dao.ShopDao.insertShop - ==>  Preparing: INSERT INTO tb_shop(priority,shop_img,shop_name,shop_desc,shop_phone,shop_addr, area_id,shop_category_id,owner_id,enable_status,create_time,update_time,advice) VALUES (?,?,?,?,?,?, ?,?,?, ?,?,?,?) 
+2020-02-16 10:49:42.179 [main] DEBUG com.cck.o2o.dao.ShopDao.insertShop - ==> Parameters: 1(Integer), test(String), test shop(String), test(String), test(String), test(String), 1(Integer), 1(Long), 1(Long), 0(Integer), 2020-02-16 10:49:41.656(Timestamp), null, test(String)
+2020-02-16 10:49:42.287 [main] DEBUG com.cck.o2o.dao.ShopDao.insertShop - <==    Updates: 1
+2020-02-16 10:50:44.351 [main] DEBUG com.cck.o2o.dao.ShopDao.insertShop - ==>  Preparing: INSERT INTO tb_shop(priority,shop_img,shop_name,shop_desc,shop_phone,shop_addr, area_id,shop_category_id,owner_id,enable_status,create_time,update_time,advice) VALUES (?,?,?,?,?,?, ?,?,?, ?,?,?,?) 
+2020-02-16 10:50:44.396 [main] DEBUG com.cck.o2o.dao.ShopDao.insertShop - ==> Parameters: 1(Integer), test(String), test shop(String), test(String), test(String), test(String), 1(Integer), 1(Long), 1(Long), 0(Integer), 2020-02-16 10:50:44.001(Timestamp), null, test(String)
+2020-02-16 10:50:44.764 [main] DEBUG com.cck.o2o.dao.ShopDao.insertShop - <==    Updates: 1
+2020-02-16 12:56:32.603 [main] DEBUG com.cck.o2o.dao.ShopDao.updateShop - ==>  Preparing: UPDATE tb_shop SET shop_desc = ?, update_time = ? where shop_id=? 
+2020-02-16 12:56:32.628 [main] DEBUG com.cck.o2o.dao.ShopDao.updateShop - ==> Parameters: 测试更新的描述(String), 2020-02-16 12:56:32.194(Timestamp), 1(Long)
+2020-02-16 12:56:33.014 [main] DEBUG com.cck.o2o.dao.ShopDao.updateShop - <==    Updates: 1
