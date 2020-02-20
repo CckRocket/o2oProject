@@ -3,11 +3,13 @@ package com.cck.o2o.service;
 import static org.junit.Assert.assertEquals;
 
 import java.io.File;
+import java.io.FileInputStream;
+import java.io.FileNotFoundException;
+import java.io.InputStream;
 import java.util.Date;
 
 import org.junit.Test;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.stereotype.Service;
 
 import com.cck.o2o.BaseTest;
 import com.cck.o2o.dto.ShopExecution;
@@ -22,7 +24,7 @@ public class ShopServiceTest extends BaseTest{
 	private ShopService shopService;
 	
 	@Test
-	public void testAddShop() {
+	public void testAddShop() throws FileNotFoundException {
 		Shop shop = new Shop();
 		Area area = new Area();
 		PersonInfo owner = new PersonInfo();
@@ -42,7 +44,8 @@ public class ShopServiceTest extends BaseTest{
 		shop.setShopName("test shop Service");
 		shop.setShopPhone("test");
 		File shopImg = new File("D:/o2o_resources/image/hollowKnight.jpg");
-		ShopExecution se = shopService.addShop(shop, shopImg);
+		InputStream shopImgInputStream = new FileInputStream(shopImg);
+		ShopExecution se = shopService.addShop(shop, shopImgInputStream,shopImg.getName());
 		assertEquals(ShopStateEnum.CHECK.getState(), se.getState());
 	}
 }

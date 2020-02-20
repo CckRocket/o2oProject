@@ -2,6 +2,7 @@ package com.cck.o2o.util;
 
 import java.io.File;
 import java.io.IOException;
+import java.io.InputStream;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.Random;
@@ -53,15 +54,15 @@ public class ImageUtil {
 	 * @param targetAddr
 	 * @return
 	 */
-	public static String generateThumbnail(File thumbnail, String targetAddr) {
+	public static String generateThumbnail(InputStream thumbnailInputStream, String fileName, String targetAddr) {
 		//利用随机名生成用户图片名称
-		String fileName = getRandomFileName();
+		String realFileName = getRandomFileName();
 		//获取用户图片的扩展名
-		String extension = getFileExtension(thumbnail);
+		String extension = getFileExtension(fileName);
 		//根据相对路径，创建目标路径的目录
 		makeDirPath(targetAddr);
 		//生成相对路径
-		String relativeAddr = targetAddr + fileName + extension;
+		String relativeAddr = targetAddr + realFileName + extension;
 		logger.debug("current relativeAddr is " + relativeAddr);
 		//在绝对路径下创建图片
 		File dest = new File(PathUtil.getImgBasePath() + relativeAddr);
@@ -72,7 +73,7 @@ public class ImageUtil {
 			//水印图置于右下角，0.25的透明度
 			//水印图的路径在项目的classpath中，即basePath/freeExpress.jpg
 			//输出质量为0.8，输出到dest文件中
-			Thumbnails.of(thumbnail).size(200, 200)
+			Thumbnails.of(thumbnailInputStream).size(400, 200)
 			.watermark(Positions.BOTTOM_RIGHT, ImageIO.read(new File(basePath + "/freeExpress.jpg")),0.25f)
 			.outputQuality(0.8f).toFile(dest);
 		} catch (IOException e) {
@@ -103,17 +104,15 @@ public class ImageUtil {
 	 * @param thumbnail
 	 * @return
 	 */
-	private static String getFileExtension(File commonFile) {
-		//获取原文件的文件名
-		String originFileName = commonFile.getName();
+	private static String getFileExtension(String fileName) {
 		//返回原文件名中最后一个.之后的字符串
-		return originFileName.substring(originFileName.lastIndexOf("."));
+		return fileName.substring(fileName.lastIndexOf("."));
 	}
 	/**
 	 * 生成随机文件名，格式为：年月日时分秒+五位随机数
 	 * @return
 	 */
-	private static String getRandomFileName() {
+	public static String getRandomFileName() {
 		//获取随机的五位数
 		int randNum = RANDOM.nextInt(90000) + 10000;
 		//返回当前的时间
